@@ -240,7 +240,8 @@
         return;
       }
       $(".active-tag").removeClass("active active-tag");
-      $(this).addClass("active-tag");
+      // CORRECTION: On ajoute la classe "active" aux cotés de "active-tag" pour que le style soit appliqué correctement
+      $(this).addClass("active active-tag");
 
       var tag = $(this).data("images-toggle");
 
