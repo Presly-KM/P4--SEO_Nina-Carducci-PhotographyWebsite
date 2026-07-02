@@ -126,7 +126,7 @@
           activeImage = $(this);
         }
       });
-      let activeTag = $(".tags-bar span.active-tag").data("images-toggle");
+      let activeTag = $(".tags-bar span.active-tag").data("images-toggle"); // Le code ci-contre signifie que l'on récupère la valeur de l'attribut "data-images-toggle" de l'élément qui a la classe "active-tag" dans la barre de tags. Cette valeur correspond au tag actuellement sélectionné pour filtrer les images dans la galerie.
       let imagesCollection = [];
       if (activeTag === "all") {
         $(".item-column").each(function() {
@@ -148,9 +148,9 @@
       let index = 0,
         next = null;
 
-      $(imagesCollection).each(function(i) {
-        if ($(activeImage).attr("src") === $(this).attr("src")) {
-          index = i ;
+      $(imagesCollection).each(function(i) {                      
+        if ($(activeImage).attr("src") === $(this).attr("src")) {  
+          index = i ;                                              
         }
       });
       next =
@@ -187,9 +187,9 @@
       let index = 0,
         next = null;
 
-      $(imagesCollection).each(function(i) {
-        if ($(activeImage).attr("src") === $(this).attr("src")) {
-          index = i;
+      $(imagesCollection).each(function(i) {                            // Ici, on parcourt chaque élément de la collection d'images filtrées (imagesCollection) en utilisant la méthode each() de jQuery. La fonction de rappel prend un paramètre i qui représente l'index actuel de l'image dans la collection. $ signifie que l'on utilise jQuery pour sélectionner les éléments du DOM. 
+        if ($(activeImage).attr("src") === $(this).attr("src")) {       // On aurait aussi pu écrire $(imagesCollection[i]).attr("src") au lieu de $(this).attr("src") pour accéder à l'image actuelle dans la boucle.
+          index = i;                                                    // Si l'image actuellement affichée dans la lightbox (activeImage) a le même attribut "src" que l'image actuelle dans la boucle (this), alors on met à jour l'index pour qu'il corresponde à l'index de cette image dans la collection. Cela permet de savoir quelle image est actuellement affichée et de déterminer quelle image afficher ensuite lorsqu'on clique sur le bouton "précédent".
         }
       });
       next = imagesCollection[index] || imagesCollection[0];
