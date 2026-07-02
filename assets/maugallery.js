@@ -153,11 +153,15 @@
           index = i ;                                              
         }
       });
-      next =
-        imagesCollection[index] ||
-        imagesCollection[imagesCollection.length - 1];
-      $(".lightboxImage").attr("src", $(next).attr("src"));
-    },
+      // CORRECTION : On calcule l'index précédent avec gestion de la boucle
+      let prevIndex = index - 1;
+        if (prevIndex < 0) {
+        prevIndex = imagesCollection.length - 1; // Si l'index précédent est inférieur à 0, on le réinitialise à l'index de la dernière image de la collection pour créer une boucle.
+        }
+    
+      let prevElement = imagesCollection[prevIndex];
+      $(".lightboxImage").attr("src", $(prevElement).attr("src"));
+},
     nextImage() {
       let activeImage = null;
       $("img.gallery-item").each(function() {
@@ -192,9 +196,15 @@
           index = i;                                                    // Si l'image actuellement affichée dans la lightbox (activeImage) a le même attribut "src" que l'image actuelle dans la boucle (this), alors on met à jour l'index pour qu'il corresponde à l'index de cette image dans la collection. Cela permet de savoir quelle image est actuellement affichée et de déterminer quelle image afficher ensuite lorsqu'on clique sur le bouton "précédent".
         }
       });
-      next = imagesCollection[index] || imagesCollection[0];
-      $(".lightboxImage").attr("src", $(next).attr("src"));
-    },
+      // CORRECTION : On calcule l'index suivant avec gestion de la boucle
+      let nextIndex = index + 1;
+      if (nextIndex >= imagesCollection.length) {
+        nextIndex = 0; // On repart au début
+      }
+
+      let nextElement = imagesCollection[nextIndex];                   // On récupère l'élément suivant dans la collection d'images filtrées en utilisant l'index calculé précédemment. Cela permet de déterminer quelle image doit être affichée dans la lightbox lorsque l'utilisateur clique sur le bouton "suivant".
+      $(".lightboxImage").attr("src", $(nextElement).attr("src"));
+},
     createLightBox(gallery, lightboxId, navigation) {
       gallery.append(`<div class="modal fade" id="${
         lightboxId ? lightboxId : "galleryLightbox"
