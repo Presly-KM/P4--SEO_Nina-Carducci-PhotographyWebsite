@@ -67,9 +67,11 @@ body {
 	z-index: 0;
 }
 
+/* Redimensionner proprement la photo de présentation de Nina */
 .picture img {
-	width: 100%;
-
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* Object-fit: cover pour remplir le conteneur tout en conservant les proportions de l'image */
 }
 #about-me {
 	flex: 2
